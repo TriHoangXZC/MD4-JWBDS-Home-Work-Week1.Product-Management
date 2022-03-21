@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductService {
     List<Product> displayAllProduct();
 
-    int findById(int id);
+    int findIndexById(int id);
 
     Product findProductById(int id);
 
@@ -15,5 +15,5 @@ public interface ProductService {
 
     void editProduct(int id, Product product);
 
-    void deleteProduct(Product product);
+    void deleteProduct(int  id);
 }

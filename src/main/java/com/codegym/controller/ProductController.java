@@ -67,8 +67,7 @@ public class ProductController {
     @PostMapping("/delete/{id}")
     public ModelAndView deleteProduct(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/products");
-        Product product = productService.findProductById(id);
-        productService.deleteProduct(product);
+        productService.deleteProduct(id);
         return modelAndView;
     }
 }

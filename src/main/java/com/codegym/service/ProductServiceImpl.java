@@ -5,7 +5,7 @@ import com.codegym.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     private static List<Product> products;
 
     static {
@@ -21,11 +21,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public int findById(int id) {
+    public int findIndexById(int id) {
         int index = -1;
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getId() == id) {
                 index = i;
+                break;
             }
         }
         return index;
@@ -33,12 +34,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product findProductById(int id) {
-        int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                index = i;
-                return products.get(i);
-            }
+        int index = findIndexById(id);
+        if (index != -1) {
+            return products.get(index);
         }
         return null;
     }
@@ -50,12 +48,13 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void editProduct(int id, Product product) {
-        int index = findById(id);
+        int index = findIndexById(id);
         products.set(index, product);
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        products.remove(product);
+    public void deleteProduct(int id) {
+        int index = findIndexById(id);
+        products.remove(index);
     }
 }
